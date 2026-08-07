@@ -1,0 +1,45 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+---
+<DocsLayout title="架构与目录 | 罐头喵 Canmao" description="罐头喵代码架构与目录结构" current="/Canmao-site/docs/guide/architecture">
+  <h1>🏗️ 架构与目录</h1>
+  <p>罐头喵采用 Go 编写，模块化设计：核心（core）+ 适配器（adapter）+ 服务（services）+ 存储（store）。</p>
+
+  <pre><code>├── adapter/      OneBot WebSocket 客户端（正向 WS、文件/群管理 API、合并转发）
+├── core/         核心：事件分发、Sender、合并转发、配置
+├── services/     各能力服务
+│   ├── ai/       AI Agent 核心、LLM 客户端、工具、审批、心情、人设、识图
+│   ├── acp/      ACP 客户端（调用 opencode）
+│   ├── dashscope/ 图像生成 + TTS
+│   ├── file/     文件保存/上传 + 文件工具
+│   ├── mcp/      MCP 客户端
+│   ├── memory/   向量记忆
+│   ├── plugin/   .so 插件加载
+│   ├── sched/    定时任务
+│   ├── shell/    run_command 系统命令工具
+│   ├── skill/    Claude Code 风格技能
+│   └── web/      搜索/爬取/浏览器
+├── store/        SQLite 持久化（perm/session/memory/mood/persona/provider/group/sched/allow）
+├── examples/     .so 插件示例
+├── scripts/      Playwright 浏览器脚本
+└── config.yaml   主配置</code></pre>
+
+  <h2>数据流</h2>
+  <ol>
+    <li><code>adapter</code> 通过 WebSocket 接收 QQ 事件（消息/群管理等）</li>
+    <li><code>core.Bot</code> 分发事件给各注册服务</li>
+    <li><code>ai.Service</code> 兜底响应：构建上下文 → 调用 LLM → 工具循环 → 回复</li>
+    <li>高危工具走 <a href="/Canmao-site/docs/ops/commands">审批</a>，通过后执行</li>
+    <li>回复超长自动合并转发</li>
+  </ol>
+
+  <h2>技术选型</h2>
+  <table>
+    <tr><th>类别</th><th>选型</th></tr>
+    <tr><td>语言</td><td>Go 1.25（纯 Go SQLite，无需 CGO）</td></tr>
+    <tr><td>OneBot</td><td>gorilla/websocket 正向 WS</td></tr>
+    <tr><td>数据库</td><td>modernc.org/sqlite</td></tr>
+    <tr><td>MCP</td><td>mark3labs/mcp-go</td></tr>
+    <tr><td>配置</td><td>yaml.v3</td></tr>
+  </table>
+</DocsLayout>

@@ -1,0 +1,48 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+---
+<DocsLayout title="特性总览 | 罐头喵 Canmao" description="罐头喵核心能力一览" current="/Canmao-site/docs/guide/features">
+  <h1>✨ 特性总览</h1>
+  <p>罐头喵不是一个简单的"自动回复"，而是一套完整的智能助理框架。</p>
+
+  <h2>AI Agent 核心</h2>
+  <ul>
+    <li><strong>多模型多提供商</strong>：OpenAI 兼容接口，运行期用 <code>/provider</code> 动态增删切换</li>
+    <li><strong>工具调用</strong>：自动循环调用工具完成任务，最多 200 轮</li>
+    <li><strong>上下文管理</strong>：自动压缩长会话，控制 token 消耗</li>
+    <li><strong>群会话模式</strong>：<code>merged</code> 全群合并 / <code>separate</code> 按用户独立</li>
+  </ul>
+
+  <h2>个性化</h2>
+  <ul>
+    <li><strong>记忆 🧠</strong>：向量检索长短期记忆，Recall 过去对话</li>
+    <li><strong>心情 🌤️</strong>：根据群氛围主动搭话</li>
+    <li><strong>人设 🎭</strong>：有性格，还能自我进化</li>
+  </ul>
+
+  <h2>多媒体</h2>
+  <ul>
+    <li><strong>识图 👀</strong>：qwen 视觉模型描述图片</li>
+    <li><strong>画图 🎨</strong>：qwen-image-2.0 生成插图</li>
+    <li><strong>语音 🎙️</strong>：qwen3-tts-flash 朗读</li>
+  </ul>
+
+  <h2>外部能力</h2>
+  <ul>
+    <li><strong>Web 🕸️</strong>：搜索、抓取、Playwright 浏览器</li>
+    <li><strong>调用 opencode ⚡</strong>：让编程智能体写代码、跑测试</li>
+    <li><strong>MCP 🔌</strong>：支持 MCP 服务器接入</li>
+    <li><strong>插件</strong>：.so 插件 + Claude Code 风格 Skill</li>
+  </ul>
+
+  <h2>安全与治理</h2>
+  <ul>
+    <li><strong>权限分级</strong>：主人 / 管理员 / 普通用户</li>
+    <li><strong>人工审批</strong>：高危操作（跑命令、调 opencode）需审批或进白名单</li>
+    <li><strong>长消息合并转发</strong>：超过 200 字自动用合并转发，不霸屏</li>
+    <li><strong>文件管理</strong>：自动保存收到的图片文件，可检索上传</li>
+  </ul>
+
+  <h2>更多</h2>
+  <p>点击左侧查看 <a href="/Canmao-site/docs/capabilities/memory">记忆</a>、<a href="/Canmao-site/docs/capabilities/mood">心情</a>、<a href="/Canmao-site/docs/capabilities/web">Web</a> 等具体能力详解。</p>
+</DocsLayout>

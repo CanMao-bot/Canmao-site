@@ -1,0 +1,70 @@
+:root {
+  --pink-50: #fff1f5;
+  --pink-100: #ffdbe6;
+  --pink-200: #ffb8cf;
+  --pink-300: #ff8fae;
+  --pink-400: #ff6b9a;
+  --pink-500: #f94d84;
+  --pink-600: #e63675;
+  --pink-700: #b32355;
+  --rose-grad: linear-gradient(135deg, #ff6b9a 0%, #ffb8cf 100%);
+  --bg: #fff6f9;
+  --surface: #ffffff;
+  --ink: #3d2831;
+  --ink-soft: #7d6470;
+  --border: #fbd8e4;
+  --shadow: 0 10px 30px rgba(246, 82, 143, 0.12);
+  --radius: 20px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--pink-600); text-decoration: none; }
+a:hover { text-decoration: underline; }
+h1, h2, h3, h4 { color: var(--ink); line-height: 1.35; margin: 1.5em 0 0.6em; }
+code {
+  background: var(--pink-100);
+  color: var(--pink-600);
+  padding: 0.15em 0.4em;
+  border-radius: 6px;
+  font-size: 0.9em;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+}
+pre {
+  background: #2d2126;
+  color: #ffd3e0;
+  padding: 1.2rem 1.4rem;
+  border-radius: 14px;
+  overflow-x: auto;
+  border: 1px solid rgba(255,255,255,0.06);
+  line-height: 1.6;
+}
+pre code { background: transparent; color: inherit; padding: 0; }
+/* 渐变文字 */
+.grad-text {
+  background: var(--rose-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+/* 通用容器 */
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 1.5rem; }
+/* 卡片 */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.6rem 1.7rem;
+}
+section { margin: 3.5rem 0; }
+p { margin: 0.8rem 0; }
+ul, ol { padding-left: 1.4rem; }
+::selection { background: var(--pink-200); }

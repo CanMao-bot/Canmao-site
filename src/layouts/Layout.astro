@@ -1,0 +1,30 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = '罐头喵 (Canmao) — 可爱又实用的 QQ 开源智能机器人框架' } = Astro.props;
+const site = 'https://canmao-bot.github.io/Canmao-site/';
+const basePath = '/Canmao-site/';
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href={`${basePath}favicon.svg`} />
+    <link rel="canonical" href={new URL(Astro.url.pathname, site).toString()} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={new URL(Astro.url.pathname, site).toString()} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

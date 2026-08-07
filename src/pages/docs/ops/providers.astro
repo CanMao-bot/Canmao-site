@@ -1,0 +1,24 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+---
+<DocsLayout title="模型提供商 | 罐头喵 Canmao" description="罐头喵的多模型提供商管理" current="/Canmao-site/docs/ops/providers">
+  <h1>🔧 模型提供商</h1>
+  <p>罐头喵支持多个 OpenAI 兼容的模型提供商，运行期可动态增删切换，无需改配置重启。</p>
+
+  <h2>初始提供商</h2>
+  <p><code>config.yaml</code> 中的 <code>ai.*</code> 作为初始默认提供商，在首次启动时导入 <code>data/providers.json</code>。</p>
+
+  <h2>运行时管理</h2>
+  <p>在群里（或私聊主人）直接发命令：</p>
+  <pre><code>/providers                        # 列出所有提供商
+/provider add 我的DeepSeek https://api.deepseek.com/v1 sk-xxxx
+/provider use 我的DeepSeek
+/provider remove 旧提供商</code></pre>
+
+  <h2>代理</h2>
+  <p>每个提供商可单独设置代理（适合外网受限环境访问海外 API）：</p>
+  <pre><code>/provider proxy 我的DeepSeek http://127.0.0.1:7890</code></pre>
+
+  <h2>安全注意</h2>
+  <blockquote>API Key 存于 <code>data/providers.json</code>，本地私有，请勿公开提交。开源部署请用配置 + 环境变量注入。</blockquote>
+</DocsLayout>

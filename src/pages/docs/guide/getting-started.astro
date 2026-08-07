@@ -1,0 +1,48 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+---
+<DocsLayout title="快速开始 | 罐头喵 Canmao" description="几分钟跑起罐头喵 QQ 机器人" current="/Canmao-site/docs/guide/getting-started">
+  <h1>🚀 快速开始</h1>
+  <p>罐头喵（Canmao）基于 Go 开发，通过 OneBot(WebSocket) 连接 NapCat，几分钟即可跑起来。</p>
+
+  <h2>环境要求</h2>
+  <ul>
+    <li>Go 1.25.5+</li>
+    <li>NapCat QQ 框架已运行，开放 OneBot 正向 WS 端口（默认 3001）</li>
+    <li>可选：一个 OpenAI 兼容的模型 API</li>
+  </ul>
+
+  <h2>获取源码</h2>
+  <pre><code>git clone https://github.com/CanMao-bot/Canmao.git
+    cd Canmao</code></pre>
+
+  <h2>配置</h2>
+  <p>复制示例配置并填入你自己的参数：</p>
+  <pre><code>cp config.example.yaml config.yaml</code></pre>
+  <p>填写 <code>config.yaml</code>：</p>
+  <table>
+    <tr><th>字段</th><th>说明</th></tr>
+    <tr><td><code>bot.master_id</code></td><td>主人 QQ，最高权限</td></tr>
+    <tr><td><code>onebot.ws_url</code></td><td>NapCat WS 地址</td></tr>
+    <tr><td><code>onebot.token</code></td><td>OneBot token</td></tr>
+    <tr><td><code>onebot.self_id</code></td><td>机器人 QQ 号</td></tr>
+    <tr><td><code>ai.*</code></td><td>默认模型提供商（后续可用 /provider 动态管理）</td></tr>
+  </table>
+
+  <blockquote>⚠️ <code>config.yaml</code> 含敏感信息，请勿提交到版本库！仓库只保留占位符版 <code>config.example.yaml</code>。</blockquote>
+
+  <h2>构建</h2>
+  <pre><code># 大陆环境加速
+export GOPROXY=https://goproxy.cn,direct
+go build -o Canmao .</code></pre>
+
+  <h2>运行</h2>
+  <pre><code>./Canmao</code></pre>
+  <p>看到 <code>[gobot] 启动完成</code> 即成功。也可以使用 <a href="/Canmao-site/docs/ops/deployment">systemd 部署</a> 保持常驻。</p>
+
+  <h2>在群里召唤它</h2>
+  <p>默认情况下，直接 @ 罐头喵 或使用命令前缀 <code>/</code> 即可交互：</p>
+  <pre><code>/on          # 群里开启 AI
+/模型         # 查看模型
+/ask 今天天气怎么样</code></pre>
+</DocsLayout>

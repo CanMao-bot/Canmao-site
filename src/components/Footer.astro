@@ -1,0 +1,30 @@
+---
+const base = '/Canmao-site/';
+const year = new Date().getFullYear();
+---
+<footer class="site-foot">
+  <div class="wrap foot-inner">
+    <div>
+      <span class="foot-brand grad-text">罐头喵 Canmao</span>
+      <p class="foot-tag">住在 QQ 里的罐头型智能助手喵～</p>
+    </div>
+    <div class="foot-links">
+      <a href="https://github.com/CanMao-bot/Canmao" target="_blank">源码仓库</a>
+      <a href="https://github.com/CanMao-bot" target="_blank">组织</a>
+      <a href={`${base}docs/`}>文档</a>
+    </div>
+    <div class="foot-copy">
+      © {year} CanMao-bot · MIT License · Made with 🐱
+    </div>
+  </div>
+</footer>
+<style>
+  .site-foot { margin-top: 5rem; border-top: 1px solid var(--border); background: var(--pink-50); }
+  .foot-inner { padding: 2.5rem 1.5rem 3rem; display: grid; gap: 1rem; }
+  .foot-brand { font-weight: 800; font-size: 1.25rem; }
+  .foot-tag { color: var(--ink); margin: 0.4rem 0 0; opacity: 0.7; }
+  .foot-links { display: flex; gap: 1.6rem; }
+  .foot-links a { color: var(--ink); opacity: 0.75; }
+  .foot-links a:hover { color: var(--pink-600); opacity: 1; }
+  .foot-copy { color: var(--ink); opacity: 0.6; font-size: 0.9rem; }
+</style>

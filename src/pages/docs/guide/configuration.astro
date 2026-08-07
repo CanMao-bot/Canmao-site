@@ -1,0 +1,63 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+---
+<DocsLayout title="配置参考 | 罐头喵 Canmao" description="罐头喵 config 配置项完整参考" current="/Canmao-site/docs/guide/configuration">
+  <h1>⚙️ 配置参考</h1>
+  <p>核心配置在 <code>config.yaml</code>。完整示例为仓库中的 <code>config.example.yaml</code>。</p>
+
+  <h2>bot</h2>
+  <table>
+    <tr><th>字段</th><th>说明</th></tr>
+    <tr><td><code>name</code></td><td>bot 显示名</td></tr>
+    <tr><td><code>master_id</code></td><td>主人 QQ（最高权限）</td></tr>
+    <tr><td><code>admin_ids</code></td><td>额外管理员</td></tr>
+    <tr><td><code>prefix</code></td><td>命令前缀，默认 /</td></tr>
+    <tr><td><code>long_message_forward</code></td><td>长消息用合并转发</td></tr>
+    <tr><td><code>long_message_threshold</code></td><td>超过此字符数使用合并转发（200）</td></tr>
+  </table>
+
+  <h2>onebot</h2>
+  <table>
+    <tr><td><code>ws_url</code></td><td>NapCat WS 地址</td></tr>
+    <tr><td><code>token</code></td><td>OneBot token</td></tr>
+    <tr><td><code>self_id</code></td><td>机器人 QQ 号</td></tr>
+  </table>
+
+  <h2>data</h2>
+  <table>
+    <tr><td><code>dir</code></td><td>数据目录（./data）</td></tr>
+    <tr><td><code>file_retention_days</code></td><td>缓存文件保留天数，0=不清理</td></tr>
+  </table>
+
+  <h2>ai</h2>
+  <p>作为"初始默认提供商"首次导入 <code>data/providers.json</code>，之后可用 <code>/provider</code> 动态管理。</p>
+  <table>
+    <tr><td><code>base_url / api_key / model</code></td><td>默认 OpenAI 兼容接口</td></tr>
+    <tr><td><code>system_prompt</code></td><td>系统提示词</td></tr>
+    <tr><td><code>max_tokens / temperature / timeout</code></td><td>LLM 生成参数</td></tr>
+    <tr><td><code>session_mode</code></td><td>merged / separate</td></tr>
+    <tr><td><code>mention_only</code></td><td>群内仅 @bot 响应</td></tr>
+    <tr><td><code>context_window</code></td><td>模型上下文（压缩阈值=40%）</td></tr>
+    <tr><td><code>max_iterations</code></td><td>工具调用最大轮数（200）</td></tr>
+    <tr><td><code>tool_result_max</code></td><td>工具结果最大字符（3000）</td></tr>
+  </table>
+
+  <h2>memory / mood / persona</h2>
+  <ul>
+    <li><code>memory</code>：<code>enabled</code>、<code>embed_base_url/api_key/model</code>、<code>recall_limit</code>、<code>vision_model</code></li>
+    <li><code>mood</code>：<code>proactive</code>、<code>every_n</code>、<code>remember_tool</code></li>
+    <li><code>persona</code>：<code>base</code>、<code>self_improve</code>、<code>improve_every</code></li>
+  </ul>
+
+  <h2>web / sched / media / acp / mcp</h2>
+  <table>
+    <tr><td><code>web</code></td><td>搜索/爬取/浏览器；<code>proxy</code> 填代理（外网担心环境需要）</td></tr>
+    <tr><td><code>sched</code></td><td>定时任务 <code>schedule_tool</code></td></tr>
+    <tr><td><code>media</code></td><td>图像生成（qwen-image-2.0）+ TTS（qwen3-tts-flash），DashScope API</td></tr>
+    <tr><td><code>acp</code></td><td>调用 opencode；<code>binary</code> 需绝对路径，<code>cwd</code>、<code>timeout</code></td></tr>
+    <tr><td><code>mcp</code></td><td>MCP 服务器列表</td></tr>
+    <tr><td><code>skills / plugin</code></td><td>技能目录 / 插件目录</td></tr>
+  </table>
+
+  <blockquote>⚠️ 注意：opencode 在 systemd 环境通常无 nvm PATH，请给 <code>acp.binary</code> 填完整绝对路径，并在服务里注入 node PATH。</blockquote>
+</DocsLayout>

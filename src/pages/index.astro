@@ -1,0 +1,110 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const base = '/Canmao-site/';
+const features = [
+  { icon: '🧠', title: '记忆', desc: '向量检索的长短期记忆，越聊越懂你，记得住你说过的每句话。' },
+  { icon: '🌤️', title: '心情', desc: '会根据群聊氛围主动搭话，不再是一台冷冰冰的机器。' },
+  { icon: '🎭', title: '人设', desc: '有性格有语气，还能从对话中自我学习、进化人设。' },
+  { icon: '👀', title: '识图 / 画图', desc: 'qwen 视觉看懂图片，还能用 DashScope 生成漂亮插图。' },
+  { icon: '🎙️', title: '语音', desc: 'TTS 朗读，会说话的罐头喵，多种音色可选。' },
+  { icon: '🕸️', title: 'Web 联网', desc: '搜索、抓网页、Playwright 浏览器自动化，万物皆可查。' },
+  { icon: '⏰', title: '定时任务', desc: '告诉它「提醒我…」，到点自动发，贴心又准时。' },
+  { icon: '⚡', title: '调用 opencode', desc: '直接喊编程智能体帮你写代码、跑测试、排查问题。' },
+  { icon: '🔌', title: '插件 / Skill', desc: '.so 插件 + Claude Code 风格技能，想怎么扩展怎么扩展。' },
+];
+const commands = [
+  { cmd: '/provider', desc: '动态添加 / 切换模型提供商' },
+  { cmd: '/model', desc: '查看 / 切换模型' },
+  { cmd: '/on', desc: '在群内开启 AI' },
+  { cmd: '/ask', desc: '让罐头喵干活' },
+];
+---
+<Layout title="罐头喵 Canmao — QQ 开源智能机器人框架">
+  <Header />
+  <main>
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <div class="hero-badge">🐱 开源 · MIT · 基于 Go + OneBot + NapCat</div>
+        <h1 class="hero-title">罐头喵 <span class="grad-text">Canmao</span></h1>
+        <p class="hero-sub">一个住在 QQ 里的罐头型智能助手喵～<br />装得下工具、会记性、有心情、会长记性，还能喊 opencode 帮你写代码！</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href={`${base}docs/guide/getting-started`}>🚀 快速开始</a>
+          <a class="btn btn-ghost" href="https://github.com/CanMao-bot/Canmao" target="_blank">⭐ GitHub 仓库</a>
+        </div>
+        <div class="hero-cats" aria-hidden="true">🐱🐱🐱</div>
+      </div>
+    </section>
+
+    <section class="wrap">
+      <div class="card hero-quote">
+        <p>「有了罐头喵，QQ 群不再是聊天框，而是一个会思考、会动手的智能助理喵。」</p>
+      </div>
+    </section>
+
+    <section class="wrap">
+      <h2 class="sec-title">✨ 核心特性</h2>
+      <div class="feat-grid">
+        {features.map((f) => (
+          <div class="card feat-card">
+            <div class="feat-icon">{f.icon}</div>
+            <h3>{f.title}</h3>
+            <p>{f.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="wrap">
+      <h2 class="sec-title">💬 群里就能用的命令</h2>
+      <div class="cmd-grid">
+        {commands.map((c) => (
+          <div class="card cmd-card">
+            <code>{c.cmd}</code>
+            <span>{c.desc}</span>
+          </div>
+        ))}
+      </div>
+      <p class="cmd-more"><a href={`${base}docs/ops/commands`}>查看全部命令 →</a></p>
+    </section>
+
+    <section class="wrap cta">
+      <div class="card cta-card">
+        <h2>把罐头喵领回家吧 🐱</h2>
+        <p>几分钟搞定，让它成为你群里的好帮手。</p>
+        <a class="btn btn-primary" href={`${base}docs/guide/getting-started`}>🚀 快速开始</a>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .hero { padding: 5rem 0 2rem; text-align: center; }
+  .hero-badge { display: inline-block; background: var(--pink-100); color: var(--pink-600); border-radius: 999px; padding: 0.35rem 1rem; font-size: 0.85rem; font-weight: 600; }
+  .hero-title { font-size: clamp(2.8rem, 6vw, 4.5rem); font-weight: 900; margin: 1rem 0 0.4rem; }
+  .hero-sub { font-size: 1.15rem; color: var(--ink); opacity: 0.85; max-width: 640px; margin: 0 auto; }
+  .hero-actions { display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
+  .btn { border-radius: 999px; padding: 0.8rem 1.6rem; font-weight: 700; font-size: 1rem; }
+  .btn-primary { background: var(--rose-grad); color: #fff; box-shadow: 0 8px 20px rgba(246, 82, 143, 0.4); }
+  .btn-primary:hover { text-decoration: none; filter: brightness(1.05); }
+  .btn-ghost { border: 2px solid var(--pink-400); color: var(--pink-600); }
+  .btn-ghost:hover { background: var(--pink-50); text-decoration: none; }
+  .hero-cats { font-size: 1.6rem; margin-top: 2.5rem; letter-spacing: 0.4em; opacity: 0.5; }
+  .hero-quote p { margin: 0; font-size: 1.05rem; text-align: center; color: var(--ink); opacity: 0.9; }
+  .sec-title { font-size: 1.8rem; font-weight: 800; }
+  .feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.4rem; }
+  .feat-card { transition: transform 0.2s ease; }
+  .feat-card:hover { transform: translateY(-4px); }
+  .feat-icon { font-size: 2rem; }
+  .feat-card h3 { margin: 0.6rem 0 0.3rem; }
+  .feat-card p { color: var(--ink); opacity: 0.75; font-size: 0.95rem; margin: 0; }
+  .cmd-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+  .cmd-card { display: flex; align-items: center; gap: 0.8rem; padding: 1rem 1.2rem; }
+  .cmd-card code { font-size: 1rem; white-space: nowrap; }
+  .cmd-more { margin-top: 1.2rem; text-align: center; }
+  .cta-card { text-align: center; padding: 3rem 2rem; background: linear-gradient(135deg, #fff1f5, #ffdbe6); }
+  .cta-card h2 { margin-top: 0; }
+</style>

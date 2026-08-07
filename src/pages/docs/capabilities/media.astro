@@ -1,0 +1,25 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+---
+<DocsLayout title="识图 / 画图 / 语音 | 罐头喵 Canmao" description="罐头喵的多媒体能力" current="/Canmao-site/docs/capabilities/media">
+  <h1>👀 识图 / 🎨 画图 / 🎙️ 语音</h1>
+  <p>基于 DashScope（阿里云）的 qwen 系列模型，罐头喵能看懂图片、生成图片、还能开口说话。</p>
+
+  <h2>识图</h2>
+  <p>把图片发给罐头喵，它用 <code>vision_model</code>（如 qwen3.6-flash）识别并转述图片内容。</p>
+
+  <h2>生成图片</h2>
+  <p>用 <code>generate_image</code> 工具让罐头喵根据描述生成插图（qwen-image-2.0），生成结果会直接发送到当前会话。</p>
+
+  <h2>文字转语音</h2>
+  <p>用 <code>tts_speech</code> 工具让罐头喵用语音朗读（qwen3-tts-flash），可选多种音色，生成语音记录直接发到会话。</p>
+
+  <h2>配置</h2>
+  <pre><code>media:
+  enabled: true
+  base_url: "https://dashscope.aliyuncs.com"
+  api_key: "YOUR_DASHSCOPE_API_KEY"
+  image_model: "qwen-image-2.0"
+  tts_endpoint: "qwen3-tts-flash"
+  voice: "Bella"</code></pre>
+</DocsLayout>

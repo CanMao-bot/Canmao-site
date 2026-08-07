@@ -1,0 +1,22 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+---
+<DocsLayout title="Web 搜索与浏览器 | 罐头喵 Canmao" description="罐头喵的联网能力" current="/Canmao-site/docs/capabilities/web">
+  <h1>🕸️ Web 搜索与浏览器</h1>
+  <p>罐头喵能搜索、抓取网页、甚至操控真实浏览器。</p>
+
+  <h2>能力</h2>
+  <ul>
+    <li><strong>web_search</strong>：DuckDuckGo 搜索，返回相关结果</li>
+    <li><strong>fetch_url</strong>：抓取网页正文（go-readability 提取可读内容）</li>
+    <li><strong>browser</strong>：Playwright 真实浏览器自动化（脚本 <code>scripts/browser.py</code>）</li>
+  </ul>
+
+  <h2>配置</h2>
+  <pre><code>web:
+  enabled: true
+  proxy: ""          # 代理, 例: http://127.0.0.1:7890
+  browser_path: "./scripts/browser.py"</code></pre>
+
+  <blockquote>💡 在中国大陆等外网受限环境，建议配置 HTTP 代理（如 mihomo <code>127.0.0.1:7890</code>）以访问国外网站。</blockquote>
+</DocsLayout>

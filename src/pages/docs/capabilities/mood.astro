@@ -1,0 +1,20 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+---
+<DocsLayout title="心情 | 罐头喵 Canmao" description="罐头喵的心情系统" current="/Canmao-site/docs/capabilities/mood">
+  <h1>🌤️ 心情</h1>
+  <p>心情系统让罐头喵不再是一台"叫一声回一声"的机器，而是会审时度势、主动搭话的活宝。</p>
+
+  <h2>主动回复</h2>
+  <p>开启 <code>mood.proactive</code> 后，每 <code>every_n</code> 条群消息，罐头喵会根据当前群聊氛围决定是否主动插话。让群聊更有生气。</p>
+
+  <h2>配置</h2>
+  <pre><code>mood:
+  enabled: true
+  proactive: true     # 主动回复开关
+  every_n: 10         # 每10条群消息评估一次
+  remember_tool: true # 给 AI 主动记忆工具</code></pre>
+
+  <h2>与旧概率触发的区别</h2>
+  <p>早期的 <code>reply_probability</code>（概率触发）已默认关闭并由心情系统替代。心情系统更智能地结合上下文氛围，而不是纯随机。</p>
+</DocsLayout>

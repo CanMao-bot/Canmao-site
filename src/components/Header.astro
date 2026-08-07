@@ -1,0 +1,68 @@
+---
+const base = '/Canmao-site/';
+const nav = [
+  { href: `${base}`, label: '首页' },
+  { href: `${base}docs/`, label: '文档' },
+  { href: `${base}docs/guide/getting-started`, label: '快速开始' },
+  { href: `${base}docs/guide/features`, label: '特性' },
+  { href: `${base}docs/cli/`, label: 'CLI 命令' },
+];
+const current = Astro.url.pathname;
+---
+<header class="site-head">
+  <div class="wrap head-inner">
+    <a class="brand" href={`${base}`}>
+      <span class="brand-logo">🐱</span>
+      <span class="brand-name grad-text">罐头喵 Canmao</span>
+    </a>
+    <nav class="nav">
+      {nav.map((item) => (
+        <a href={item.href} class:list={['nav-link', { isActive: current.startsWith(item.href) && item.href !== base }]}>
+          {item.label}
+        </a>
+      ))}
+      <a class="btn btn-primary" href="https://github.com/CanMao-bot/Canmao" target="_blank">
+        ⭐ GitHub
+      </a>
+    </nav>
+  </div>
+</header>
+<base name="style">
+<style>
+  .site-head {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255, 246, 249, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .head-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+  .brand { display: flex; align-items: center; gap: 0.6rem; font-weight: 700; font-size: 1.2rem; }
+  .brand-logo { font-size: 1.6rem; }
+  .brand-name { text-decoration: none; }
+  .brand:hover { text-decoration: none; }
+  .nav { display: flex; align-items: center; gap: 1.4rem; }
+  .nav-link { color: var(--ink); font-weight: 500; opacity: 0.85; }
+  .nav-link:hover { opacity: 1; color: var(--pink-600); text-decoration: none; }
+  .nav-link.isActive { color: var(--pink-600); font-weight: 700; }
+  .btn {
+    border-radius: 999px;
+    padding: 0.5rem 1.1rem;
+    font-weight: 600;
+  }
+  .btn-primary {
+    background: var(--rose-grad);
+    color: #fff;
+    box-shadow: 0 6px 16px rgba(246, 82, 143, 0.35);
+  }
+  .btn-primary:hover { text-decoration: none; filter: brightness(1.05); }
+  @media (max-width: 760px) {
+    .nav .nav-link { display: none; }
+  }
+</style>

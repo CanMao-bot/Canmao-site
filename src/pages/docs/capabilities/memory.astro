@@ -1,0 +1,32 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+---
+<DocsLayout title="记忆 | 罐头喵 Canmao" description="罐头喵的记忆机制" current="/Canmao-site/docs/capabilities/memory">
+  <h1>🧠 记忆</h1>
+  <p>罐头喵拥有向量检索驱动的长短期记忆，能"记住"你说过的事情，越聊越懂你。</p>
+
+  <h2>工作原理</h2>
+  <ol>
+    <li>启用 <code>memory.enabled: true</code>，配置 <code>embed_base_url</code> / <code>embed_api_key</code> / <code>embed_model</code>（如 text-embedding-v4）</li>
+    <li>关键对话片段被向量化存入 SQLite</li>
+    <li>每次对话前按语义检索最相关的 <code>recall_limit</code> 条记忆注入上下文</li>
+  </ol>
+
+  <h2>配置</h2>
+  <pre><code>memory:
+  enabled: true
+  embed_base_url: "https://dashscope.aliyuncs.com/compatible-mode/v1"
+  embed_api_key: "YOUR_DASHSCOPE_API_KEY"
+  embed_model: "text-embedding-v4"
+  recall_limit: 5
+  vision_model: "qwen3.6-flash"</code></pre>
+
+  <h2>主动记忆</h2>
+  <p>开启 <code>mood.remember_tool</code> 后，AI 会在对话中用 <code>remember</code> 工具主动把值得记住的信息写进记忆库。</p>
+
+  <h2>注意</h2>
+  <ul>
+    <li>记忆数据存在 <code>data/memory.db</code>，属于本地私有数据，勿公开</li>
+    <li>向量模型与主对话模型不同，仅用于检索</li>
+  </ul>
+</DocsLayout>

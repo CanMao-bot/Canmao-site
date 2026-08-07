@@ -1,0 +1,44 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+---
+<DocsLayout title="部署 | 罐头喵 Canmao" description="罐头喵生产部署" current="/Canmao-site/docs/ops/deployment">
+  <h1>🚢 部署</h1>
+  <p>开发环境直接 <code>./Canmao</code> 运行。生产建议用 systemd 常驻守护。</p>
+
+  <h2>systemd 服务</h2>
+  <pre><code>cat &gt; /etc/systemd/system/canmao.service &lt;&lt;'EOF'
+[Unit]
+Description=罐头喵 Canmao - QQ Bot
+After=network-online.target napcat.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/path/to/Canmao
+Environment=GOPROXY=https://goproxy.cn,direct
+Environment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ExecStart=/path/to/Canmao/Canmao
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target
+EOF</code></pre>
+
+  <pre><code>systemctl daemon-reload
+systemctl enable --now canmao</code></pre>
+
+  <h2>查看日志</h2>
+  <pre><code>journalctl -u canmao -f</code></pre>
+
+  <h2>opencode 路径注意</h2>
+  <blockquote>若启用 <code>acp</code>，systemd 精简环境通常没有 nvm 的 PATH。请给 <code>acp.binary</code> 填 opencode 的<strong>绝对路径</strong>，并在 <code>Environment=PATH=</code> 中注入 node bin 目录。</blockquote>
+
+  <h2>升级</h2>
+  <pre><code>cd /path/to/Canmao
+git pull
+go build -o Canmao .
+systemctl restart canmao</code></pre>
+</DocsLayout>

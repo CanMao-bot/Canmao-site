@@ -1,0 +1,39 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+---
+<DocsLayout title="文档 | 罐头喵 Canmao" description="罐头喵文档首页" current="/Canmao-site/docs/">
+  <h1>📚 文档</h1>
+  <p>欢迎来到罐头喵（Canmao）的文档。它是住在 QQ 里的罐头型智能助手，帮你把群变成会思考、会动手的智能空间。</p>
+
+  <div class="grid">
+    <a class="card tile" href="/Canmao-site/docs/guide/getting-started">
+      <div class="tile-icon">🚀</div>
+      <h3>快速开始</h3>
+      <p>几分钟跑起罐头喵，接入你的 QQ 群。</p>
+    </a>
+    <a class="card tile" href="/Canmao-site/docs/guide/features">
+      <div class="tile-icon">✨</div>
+      <h3>特性总览</h3>
+      <p>看看它会什么：记忆、心情、画图、写代码……</p>
+    </a>
+    <a class="card tile" href="/Canmao-site/docs/guide/configuration">
+      <div class="tile-icon">⚙️</div>
+      <h3>配置参考</h3>
+      <p>config.yaml 全部配置项详解。</p>
+    </a>
+    <a class="card tile" href="/Canmao-site/docs/ops/deployment">
+      <div class="tile-icon">🚢</div>
+      <h3>部署指南</h3>
+      <p>systemd 常驻、升级、日志。</p>
+    </a>
+  </div>
+
+  <style>
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.2rem; margin-top: 1.5rem; }
+    .tile { display: block; text-decoration: none; color: var(--ink); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .tile:hover { transform: translateY(-4px); text-decoration: none; box-shadow: 0 14px 34px rgba(246, 82, 143, 0.18); }
+    .tile-icon { font-size: 1.8rem; }
+    .tile h3 { margin: 0.4rem 0 0.3rem; }
+    .tile p { margin: 0; opacity: 0.75; font-size: 0.92rem; }
+  </style>
+</DocsLayout>

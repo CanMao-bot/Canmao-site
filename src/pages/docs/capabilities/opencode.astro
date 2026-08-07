@@ -1,0 +1,27 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+---
+<DocsLayout title="调用 opencode | 罐头喵 Canmao" description="让罐头喵驱动 opencode 写代码" current="/Canmao-site/docs/capabilities/opencode">
+  <h1>⚡ 调用 opencode</h1>
+  <p>通过 ACP（Agent Client Protocol），罐头喵可以直接驱动 <a href="https://opencode.ai" target="_blank">opencode</a> 这样的编程智能体替你写代码、跑测试、排查问题。</p>
+
+  <h2>工作原理</h2>
+  <ol>
+    <li>罐头喵 spawn <code>opencode acp</code> 子进程，通过 stdio JSON-RPC 通信</li>
+    <li>AI 工具 <code>opencode_task</code> 把任务描述发给 opencode</li>
+    <li>opencode 在一个独立会话中执行任务，结果回传并流式显示</li>
+  </ol>
+
+  <h2>配置</h2>
+  <pre><code>acp:
+  enabled: true
+  binary: "/path/to/opencode"  # 完整绝对路径!
+  cwd: "./"
+  tool: true      # 给 AI 提供 opencode_task 工具
+  timeout: 300    # 单任务超时秒</code></pre>
+
+  <blockquote>⚠️ 常见坑：systemd 等精简环境没有 nvm 的 PATH，opencode 请填<strong>绝对路径</strong>（如 <code>~/.nvm/versions/node/v24.x/bin/opencode</code>），并在服务里注入 node PATH。</blockquote>
+
+  <h2>安全</h2>
+  <p><code>opencode_task</code> 属于 <code>RiskHigh</code> 高危工具，调用会走人工审批或 allow 白名单。</p>
+</DocsLayout>

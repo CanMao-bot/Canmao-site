@@ -1,0 +1,14 @@
+{
+	"pid": 837944,
+	"port": 4321,
+	"url": "http://localhost:4321",
+	"urls": {
+		"local": [
+			"http://localhost:4321/Canmao-site/"
+		],
+		"network": [],
+		"networkInterfaceNames": []
+	},
+	"background": true,
+	"startedAt": "2026-08-07T13:53:51.316Z"
+}

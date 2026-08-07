@@ -1,0 +1,26 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+---
+<DocsLayout title="人设 | 罐头喵 Canmao" description="罐头喵的人设系统" current="/Canmao-site/docs/capabilities/persona">
+  <h1>🎭 人设</h1>
+  <p>人设让罐头喵拥有稳定的性格、语气和说话风格，甚至可以自我学习、持续进化。</p>
+
+  <h2>基础人设</h2>
+  <p>通过 <code>persona.base</code> 定义它是什么样的小猫咪：</p>
+  <pre><code>persona:
+  enabled: true
+  base: |
+    你是一个叫 罐头喵 的智能助手, 性格友善、幽默、有耐心。
+    你说话简洁自然, 偶尔带点轻松的语气, 但不会过度卖萌。
+    你乐于助人, 善于倾听, 尊重每位用户。</code></pre>
+
+  <h2>自我进化</h2>
+  <p>开启 <code>self_improve</code> 后，每 <code>improve_every</code> 条对话，罐头喵会反思并调整自己的言行与人设，更好地匹配用户偏好。</p>
+
+  <h2>配置</h2>
+  <pre><code>persona:
+  enabled: true
+  base: "…"
+  self_improve: true  # 自我优化
+  improve_every: 20   # 每20条对话反思一次</code></pre>
+</DocsLayout>
