@@ -52,10 +52,12 @@ const sections = [
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
   </head>
-  <body>
+  <body data-docpage>
     <Header />
     <div class="wrap docs-layout">
-      <aside class="docs-side">
+      <!-- 移动端抽屉遮罩 -->
+      <div id="drawer-mask" class="drawer-mask" aria-hidden="true"></div>
+      <aside class="docs-side" id="docs-side">
         <div class="dsearch"><Search /></div>
         {sections.map((sec) => (
           <div class="dsec">
@@ -69,12 +71,34 @@ const sections = [
         ))}
       </aside>
       <main class="docs-main" data-pagefind-body>
+        <!-- 移动端抽屉开关 -->
+        <button id="drawer-btn" class="drawer-btn" aria-label="打开目录">
+          <span class="db-icon">☰</span> 目录
+        </button>
         <slot />
       </main>
     </div>
     <Footer />
   </body>
 </html>
+
+<script>
+  const btn = document.getElementById('drawer-btn');
+  const mask = document.getElementById('drawer-mask');
+  function closeDrawer() {
+    document.body.classList.remove('drawer-open');
+    btn?.setAttribute('aria-expanded', 'false');
+  }
+  btn?.addEventListener('click', () => {
+    const open = document.body.classList.toggle('drawer-open');
+    btn.setAttribute('aria-expanded', String(open));
+  });
+  mask?.addEventListener('click', closeDrawer);
+  // 点击抽屉内链接后关闭
+  document.querySelectorAll('#docs-side a').forEach((a) => a.addEventListener('click', closeDrawer));
+  // 按 Esc 关闭
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDrawer(); });
+</script>
 
 <style>
   .docs-layout { display: grid; grid-template-columns: 230px 1fr; gap: 3rem; padding-top: 2.5rem; padding-bottom: 3rem; }
@@ -95,13 +119,65 @@ const sections = [
   .docs-main blockquote { border-left: 4px solid var(--pink-400); background: var(--pink-50); margin: 1rem 0; padding: 0.7rem 1rem; border-radius: 0 12px 12px 0; }
   .docs-main blockquote p { margin: 0; }
   .docs-main img { max-width: 100%; border-radius: 12px; }
+  .drawer-btn { display: none; }
+  .drawer-mask { display: none; }
   @media (max-width: 860px) {
-    .docs-layout { grid-template-columns: 1fr; gap: 1.2rem; padding-top: 1.5rem; }
-    .docs-side { position: static; display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; }
-    .dsearch { width: 100%; margin-bottom: 0.2rem; }
-    .dsec { margin-bottom: 0.5rem; }
-    .dsec-title { display: none; }
-    .dlink { background: var(--pink-50); margin-right: 0.3rem; font-size: 0.9rem; padding: 0.3rem 0.6rem; }
+    .docs-layout { grid-template-columns: 1fr; gap: 1.2rem; padding-top: 1.5rem; padding-bottom: 4rem; }
+
+    /* 抽屉样式：从左侧滑出 */
+    .docs-side {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: min(300px, 82vw);
+      z-index: 100;
+      background: #fff;
+      box-shadow: 6px 0 30px rgba(246, 82, 143, 0.2);
+      padding: 1.4rem 1.2rem;
+      overflow-y: auto;
+      transform: translateX(-105%);
+      transition: transform 0.25s ease;
+      display: block;
+    }
+    body.drawer-open .docs-side { transform: translateX(0); }
+    body.drawer-open { overflow: hidden; }
+
+    /* 遮罩 */
+    .drawer-mask {
+      display: block;
+      position: fixed;
+      inset: 0;
+      background: rgba(61, 40, 49, 0.4);
+      z-index: 55;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    body.drawer-open .drawer-mask { opacity: 1; pointer-events: auto; }
+
+    .dsearch { margin-bottom: 1rem; }
+    .dsec { margin-bottom: 1.2rem; }
+    .dsec-title { display: block; }
+    .dlink { background: none; margin-right: 0; font-size: 0.95rem; padding: 0.4rem 0.6rem; }
+
+    /* 头部目录开关按钮 */
+    .drawer-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--pink-100);
+      color: var(--pink-600);
+      border: none;
+      border-radius: 999px;
+      padding: 0.45rem 1rem;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      margin-bottom: 0.8rem;
+    }
+    .drawer-btn:active { background: var(--pink-200); }
+
     .docs-main h1 { font-size: 1.6rem; }
     .docs-main h2 { font-size: 1.25rem; }
     .docs-main { overflow-x: auto; }
