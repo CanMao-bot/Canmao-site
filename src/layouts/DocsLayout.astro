@@ -42,6 +42,12 @@ const sections = [
     ],
   },
 ];
+
+// 展平为有序列表, 用于计算上一页/下一页
+const flatNav = sections.flatMap((sec) => sec.items.map((item) => ({ href: item.href, label: item.label })));
+const curIdx = flatNav.findIndex((n) => n.href === current.replace(/\/$/, ''));
+const prev = curIdx > 0 ? flatNav[curIdx - 1] : null;
+const next = curIdx >= 0 && curIdx < flatNav.length - 1 ? flatNav[curIdx + 1] : null;
 ---
 <!doctype html>
 <html lang="zh-CN">
@@ -76,6 +82,22 @@ const sections = [
           <span class="db-icon">☰</span> 目录
         </button>
         <slot />
+        <nav class="doc-pager" aria-label="文档翻页">
+          {prev && (
+            <a class="pager-link pager-prev" href={prev.href}>
+              <span class="pager-label">← 上一篇</span>
+              <span class="pager-title">{prev.label}</span>
+            </a>
+          )}
+          {!prev && <span class="pager-link pager-empty"></span>}
+          {next && (
+            <a class="pager-link pager-next" href={next.href}>
+              <span class="pager-label">下一篇 →</span>
+              <span class="pager-title">{next.label}</span>
+            </a>
+          )}
+          {!next && <span class="pager-link pager-empty"></span>}
+        </nav>
       </main>
     </div>
     <Footer />
@@ -119,6 +141,38 @@ const sections = [
   .docs-main blockquote { border-left: 4px solid var(--pink-400); background: var(--pink-50); margin: 1rem 0; padding: 0.7rem 1rem; border-radius: 0 12px 12px 0; }
   .docs-main blockquote p { margin: 0; }
   .docs-main img { max-width: 100%; border-radius: 12px; }
+  /* 上一篇/下一篇翻页 */
+  .doc-pager {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .pager-link {
+    flex: 1;
+    max-width: 48%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 0.8rem 1rem;
+    background: var(--surface);
+    transition: all 0.18s ease;
+  }
+  .pager-link:hover {
+    border-color: var(--pink-400);
+    box-shadow: 0 6px 18px rgba(246, 82, 143, 0.14);
+    text-decoration: none;
+    transform: translateY(-2px);
+  }
+  .pager-link.pager-next { align-items: flex-end; text-align: right; }
+  .pager-empty { visibility: hidden; }
+  .pager-label { font-size: 0.78rem; color: var(--pink-500); font-weight: 600; }
+  .pager-title { font-weight: 700; color: var(--ink); }
+  .pager-link:hover .pager-title { color: var(--pink-600); }
   .drawer-btn { display: none; }
   .drawer-mask { display: none; }
   @media (max-width: 860px) {
@@ -181,5 +235,8 @@ const sections = [
     .docs-main h1 { font-size: 1.6rem; }
     .docs-main h2 { font-size: 1.25rem; }
     .docs-main { overflow-x: auto; }
+    .doc-pager { flex-direction: column; }
+    .pager-link { max-width: 100%; }
+    .pager-link.pager-next { align-items: flex-start; text-align: left; }
   }
 </style>
