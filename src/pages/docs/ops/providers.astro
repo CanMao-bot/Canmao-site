@@ -13,8 +13,11 @@ import DocsLayout from '../../../layouts/DocsLayout.astro';
     <li><strong>适用场景</strong>：个人 QQ 聊天、自家小群日常使用「凑合」完全足够</li>
     <li><strong>覆盖能力</strong>：token plan 提供的模型主要包括<strong>文本对话、识图</strong>类模型</li>
   </ul>
-  <p>购买后可把 BaseURL / APIKey 用 <code>/provider add</code> 添加进来：</p>
-  <pre><code>/provider add qwen https://xxx.qianwenai.com/xxx YOUR_API_KEY
+  <p>购买后可把 BaseURL / APIKey 用 <code>/provider add</code> 添加进来（token plan 的 OpenAI 兼容接口地址如下）：</p>
+  <pre><code># token plan 的 OpenAI 兼容 BaseURL
+https://token-plan.cn-beijing.maas.aliyuncs.com/compatible-mode/v1
+
+/provider add qwen https://token-plan.cn-beijing.maas.aliyuncs.com/compatible-mode/v1 YOUR_API_KEY
 /provider use qwen</code></pre>
 
   <h2>🔑 TTS / 会话模型：阿里云余额按量付费</h2>
