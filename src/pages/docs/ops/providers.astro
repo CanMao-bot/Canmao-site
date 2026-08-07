@@ -9,22 +9,26 @@ import DocsLayout from '../../../layouts/DocsLayout.astro';
   <p>对个人聊天和自家小群使用，推荐 <strong>Qwen Token Plan</strong>（通义千问），性价比很高：</p>
   <ul>
     <li><strong>推荐套餐</strong>：约 <strong>39 元/月</strong> 档位，日常对话够用且不心疼</li>
-    <li><strong>轻量之选</strong>：仅<strong>私人聊天</strong>每月 <strong>10 元</strong>就足够，小群聊也基本够</li>
     <li><strong>官网</strong>：<a href="https://www.qianwenai.com/" target="_blank">https://www.qianwenai.com/</a></li>
     <li><strong>适用场景</strong>：个人 QQ 聊天、自家小群日常使用「凑合」完全足够</li>
+    <li><strong>覆盖能力</strong>：token plan 提供的模型主要包括<strong>文本对话、识图</strong>类模型</li>
   </ul>
   <p>购买后可把 BaseURL / APIKey 用 <code>/provider add</code> 添加进来：</p>
   <pre><code>/provider add qwen https://xxx.qianwenai.com/xxx YOUR_API_KEY
 /provider use qwen</code></pre>
 
-  <h2>🔑 TTS 与会话模型的付费额度</h2>
-  <blockquote>⚠️ 注意：<strong>TTS（语音）</strong>与<strong>会话模型</strong>通常需要<strong>充值并使用付费模式</strong>的模型，Token Plan 套餐本身可能不包含这些能力。</blockquote>
+  <h2>🔑 TTS / 会话模型：阿里云余额按量付费</h2>
+  <p>注意 <strong>Token Plan 与阿里云余额是两套分开的计费</strong>：</p>
   <ul>
-    <li><strong>充值</strong>：在官网账号中充值余额，用于按量计费的付费模型</li>
-    <li><strong>额度查看</strong>：请以官方文档为准，查看各模型的具体额度和计费方式</li>
-    <li><strong>相关配置</strong>：TTS 见 <code>media</code> 配置段（<code>tts_endpoint</code>），会话语音等走对应付费模型</li>
+    <li>Token Plan 套餐不包含 <strong>TTS（语音）</strong>、<strong>会话模型</strong>等能力</li>
+    <li>这些能力走 <strong>阿里云 DashScope</strong>，采用 <strong>余额自动扣除、按调用量计费</strong>（现用现扣）</li>
+    <li><strong>推荐充值</strong>：私人自用先充 <strong>10 元</strong> 足够撑很久，属于 TTS/会话模型的专属预算</li>
   </ul>
-  <blockquote>💡 具体每个模型的计费单价、免费额度与可用额度，请打开官方文档页面查询，避免超额欠费。</blockquote>
+  <blockquote>💡 具体各模型计费单价、免费额度与可用额度，以<strong>阿里云官方文档</strong>为准，务必先查询再调用，避免超额。</blockquote>
+  <ul>
+    <li><strong>TTS 配置</strong>：见 <code>media</code> 段（<code>tts_endpoint</code>、<code>voice</code>），填 Aliyun DashScope key</li>
+    <li><strong>会话/语音模型</strong>：其在阿里云控制台按量计费、余额自动扣</li>
+  </ul>
 
   <h2>初始提供商</h2>
   <p><code>config.yaml</code> 中的 <code>ai.*</code> 作为初始默认提供商，在首次启动时导入 <code>data/providers.json</code>。</p>
