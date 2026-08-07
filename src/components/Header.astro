@@ -1,4 +1,5 @@
 ---
+import Search from './Search.astro';
 const base = '/Canmao-site/';
 const nav = [
   { href: `${base}`, label: '首页' },
@@ -21,6 +22,7 @@ const current = Astro.url.pathname;
           {item.label}
         </a>
       ))}
+      <div class="nav-search"><Search /></div>
       <a class="btn btn-primary" href="https://github.com/CanMao-bot/Canmao" target="_blank">
         ⭐ GitHub
       </a>
@@ -47,7 +49,7 @@ const current = Astro.url.pathname;
   .brand-logo { font-size: 1.6rem; }
   .brand-name { text-decoration: none; }
   .brand:hover { text-decoration: none; }
-  .nav { display: flex; align-items: center; gap: 1.4rem; }
+  .nav { display: flex; align-items: center; gap: 1.2rem; }
   .nav-link { color: var(--ink); font-weight: 500; opacity: 0.85; }
   .nav-link:hover { opacity: 1; color: var(--pink-600); text-decoration: none; }
   .nav-link.isActive { color: var(--pink-600); font-weight: 700; }
@@ -60,9 +62,14 @@ const current = Astro.url.pathname;
     background: var(--rose-grad);
     color: #fff;
     box-shadow: 0 6px 16px rgba(246, 82, 143, 0.35);
+    white-space: nowrap;
   }
   .btn-primary:hover { text-decoration: none; filter: brightness(1.05); }
-  @media (max-width: 760px) {
+  .nav-search { display: none; }
+  @media (max-width: 860px) {
     .nav .nav-link { display: none; }
+    .nav-search { display: block; }
+    .head-inner { gap: 0.8rem; }
+    .btn-primary { padding: 0.4rem 0.8rem; font-size: 0.9rem; }
   }
 </style>

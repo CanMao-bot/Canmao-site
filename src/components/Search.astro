@@ -1,0 +1,50 @@
+---
+const base = '/Canmao-site/';
+---
+<div id="search" class="search-comp"></div>
+<link rel="stylesheet" href={`${base}pagefind/pagefind-ui.css`} />
+<script is:inline src={`${base}pagefind/pagefind-ui.js`}></script>
+<script>
+  (function () {
+    function initUI() {
+      if (!window.PagefindUI) { return; }
+      new window.PagefindUI({
+        element: '#search',
+        showSubResults: true,
+        translations: {
+          placeholder: '搜索文档…',
+          zero_results: '没有找到结果',
+          search: '搜索',
+        },
+      });
+    }
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      initUI();
+    } else {
+      window.addEventListener('DOMContentLoaded', initUI);
+    }
+  })();
+</script>
+<style>
+  .search-comp { max-width: 240px; width: 100%; }
+  .search-comp .pagefind-ui__search-input {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.45rem 1rem 0.45rem 2.4rem;
+    width: 100%;
+    outline: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23f75088' viewBox='0 0 16 16'%3E%3Cpath d='M11.7 10.3a6 6 0 1 0-1.4 1.4l3 3 1.4-1.4-3-3zM7 12A5 5 0 1 1 7 2a5 5 0 0 1 0 10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: 0.9rem center;
+  }
+  .search-comp .pagefind-ui__search-input:focus { border-color: var(--pink-400); box-shadow: 0 0 0 3px var(--pink-100); }
+  .search-comp .pagefind-ui__search-clear { color: var(--pink-500); }
+  .search-comp .pagefind-ui__result-link { color: var(--pink-600); }
+  .search-comp .pagefind-ui__drawer { box-shadow: var(--shadow); border-radius: 14px; }
+  .search-comp .pagefind-ui__result-title { color: var(--ink); }
+  .search-comp .pagefind-ui__result-excerpt mark { background: var(--pink-200); color: var(--ink); }
+  @media (max-width: 860px) {
+    .search-comp { max-width: none; }
+  }
+</style>
