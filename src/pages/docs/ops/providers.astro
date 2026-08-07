@@ -5,6 +5,17 @@ import DocsLayout from '../../../layouts/DocsLayout.astro';
   <h1>🔧 模型提供商</h1>
   <p>罐头喵支持多个 OpenAI 兼容的模型提供商，运行期可动态增删切换，无需改配置重启。</p>
 
+  <h2>💰 提供商购买推荐</h2>
+  <p>对个人聊天和自家小群使用，推荐 <strong>Qwen Token Plan</strong>（通义千问），性价比很高：</p>
+  <ul>
+    <li><strong>推荐套餐</strong>：约 <strong>39 元/月</strong> 档位，日常对话够用且不心疼</li>
+    <li><strong>官网</strong>：<a href="https://www.qianwenai.com/" target="_blank">https://www.qianwenai.com/</a></li>
+    <li><strong>适用场景</strong>：个人 QQ 聊天、自家小群日常使用「凑合」完全足够</li>
+  </ul>
+  <p>购买后可把 BaseURL / APIKey 用 <code>/provider add</code> 添加进来：</p>
+  <pre><code>/provider add qwen https://xxx.qianwenai.com/xxx YOUR_API_KEY
+/provider use qwen</code></pre>
+
   <h2>初始提供商</h2>
   <p><code>config.yaml</code> 中的 <code>ai.*</code> 作为初始默认提供商，在首次启动时导入 <code>data/providers.json</code>。</p>
 
