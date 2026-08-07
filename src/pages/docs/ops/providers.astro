@@ -16,6 +16,15 @@ import DocsLayout from '../../../layouts/DocsLayout.astro';
   <pre><code>/provider add qwen https://xxx.qianwenai.com/xxx YOUR_API_KEY
 /provider use qwen</code></pre>
 
+  <h2>🔑 TTS 与会话模型的付费额度</h2>
+  <blockquote>⚠️ 注意：<strong>TTS（语音）</strong>与<strong>会话模型</strong>通常需要<strong>充值并使用付费模式</strong>的模型，Token Plan 套餐本身可能不包含这些能力。</blockquote>
+  <ul>
+    <li><strong>充值</strong>：在官网账号中充值余额，用于按量计费的付费模型</li>
+    <li><strong>额度查看</strong>：请以官方文档为准，查看各模型的具体额度和计费方式</li>
+    <li><strong>相关配置</strong>：TTS 见 <code>media</code> 配置段（<code>tts_endpoint</code>），会话语音等走对应付费模型</li>
+  </ul>
+  <blockquote>💡 具体每个模型的计费单价、免费额度与可用额度，请打开官方文档页面查询，避免超额欠费。</blockquote>
+
   <h2>初始提供商</h2>
   <p><code>config.yaml</code> 中的 <code>ai.*</code> 作为初始默认提供商，在首次启动时导入 <code>data/providers.json</code>。</p>
 
