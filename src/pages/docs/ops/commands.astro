@@ -50,9 +50,19 @@ import DocsLayout from '../../../layouts/DocsLayout.astro';
 
   <h2>文件</h2>
   <table>
+    <tr><td><code>/files</code></td><td>查看已保存的文件列表</td></tr>
     <tr><td><code>/cleanfiles</code></td><td>手动清理缓存文件</td></tr>
-    <tr><td><code>/sendfile &lt;文件名&gt;</code></td><td>发送文件到本群</td></tr>
+    <tr><td><code>/sendfile &lt;文件名&gt;</code></td><td>发送文件到当前会话（群聊发群文件，私聊发私聊文件）</td></tr>
   </table>
+
+  <h2>入群申请</h2>
+  <p>开启 <code>group_request.enabled</code> 且 bot 是群管理时生效，详见 <a href="/Canmao-site/docs/capabilities/groupreq">入群申请管理</a>。</p>
+  <table>
+    <tr><td><code>/同意 N</code></td><td>同意第 N 号入群申请</td></tr>
+    <tr><td><code>/拒绝 N [理由]</code></td><td>拒绝第 N 号申请，可附理由</td></tr>
+    <tr><td><code>/入群申请</code></td><td>查看待审批申请列表</td></tr>
+  </table>
+  <blockquote>💡 审批权限：群主 / 群管理员 / bot 主人。无权限时静默不响应。</blockquote>
 
   <blockquote>💡 更多命令以 <code>/help</code> 实际输出为准。</blockquote>
 </DocsLayout>

@@ -1,0 +1,34 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+---
+<DocsLayout title="入群申请管理 | 罐头喵 Canmao" description="罐头喵的入群申请审批能力" current="/Canmao-site/docs/capabilities/groupreq">
+  <h1>📨 入群申请管理</h1>
+  <p>bot 是群管理员时，罐头喵把入群申请变成群内的审批卡片，管理不用切出去就能处理。</p>
+
+  <h2>工作流程</h2>
+  <ol>
+    <li>开启 <code>group_request.enabled: true</code>，且 bot 在群里是管理员</li>
+    <li>有人申请入群时，罐头喵在群内发出申请卡片：编号、QQ、昵称、验证信息</li>
+    <li>群主 / 群管理员 / bot 主人回复 <code>/同意 N</code> 或 <code>/拒绝 N [理由]</code> 完成审批</li>
+    <li><code>/入群申请</code> 可随时查看待审批列表（任何人可看）</li>
+  </ol>
+
+  <h2>命令</h2>
+  <table>
+    <tr><th>命令</th><th>说明</th></tr>
+    <tr><td><code>/同意 N</code></td><td>同意第 N 号申请</td></tr>
+    <tr><td><code>/拒绝 N [理由]</code></td><td>拒绝第 N 号申请，可附理由</td></tr>
+    <tr><td><code>/入群申请</code></td><td>查看待审批申请列表</td></tr>
+  </table>
+
+  <h2>配置</h2>
+  <pre><code>group_request:
+  enabled: true   # 入群申请管理(bot 是群管理时生效)</code></pre>
+
+  <h2>注意</h2>
+  <ul>
+    <li>仅当 bot 是目标群的管理员时才能执行审批，否则卡片提示无法操作</li>
+    <li>无权限的成员发审批命令时静默不响应，不打扰群聊</li>
+    <li>待审批状态保存在内存中，重启后未处理的申请需等待申请人重新申请</li>
+  </ul>
+</DocsLayout>

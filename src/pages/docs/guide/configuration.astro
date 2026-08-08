@@ -51,7 +51,7 @@ import DocsLayout from '../../../layouts/DocsLayout.astro';
     <li><code>persona</code>：<code>base</code>、<code>self_improve</code>、<code>improve_every</code></li>
   </ul>
 
-  <h2>web / sched / media / acp / mcp</h2>
+  <h2>web / sched / media / acp / mcp / group_request</h2>
   <table>
     <tr><td><code>web</code></td><td>搜索/爬取/浏览器；<code>proxy</code> 填代理（外网担心环境需要）</td></tr>
     <tr><td><code>sched</code></td><td>定时任务 <code>schedule_tool</code></td></tr>
@@ -59,6 +59,7 @@ import DocsLayout from '../../../layouts/DocsLayout.astro';
     <tr><td><code>acp</code></td><td>调用 opencode；<code>binary</code> 需绝对路径，<code>cwd</code>、<code>timeout</code></td></tr>
     <tr><td><code>mcp</code></td><td>MCP 服务器列表</td></tr>
     <tr><td><code>skills / plugin</code></td><td>技能目录 / 插件目录</td></tr>
+    <tr><td><code>group_request</code></td><td>入群申请管理；<code>enabled</code> 开启后 bot 是群管理时把申请发卡到群内审批，详见 <a href="/Canmao-site/docs/capabilities/groupreq">入群申请管理</a></td></tr>
   </table>
 
   <blockquote>⚠️ 注意：opencode 在 systemd 环境通常无 nvm PATH，请给 <code>acp.binary</code> 填完整绝对路径，并在服务里注入 node PATH。</blockquote>

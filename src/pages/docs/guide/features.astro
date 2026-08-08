@@ -35,12 +35,21 @@ import DocsLayout from '../../../layouts/DocsLayout.astro';
     <li><strong>插件</strong>：.so 插件 + Claude Code 风格 Skill</li>
   </ul>
 
+  <h2>群聊交互</h2>
+  <ul>
+    <li><strong>引用消息 💬</strong>：回复（引用）的消息会以"引用消息"形式注入上下文，AI 能看到引用内容（含图片识图转述），也可用 <code>view_message</code> 工具按消息 ID 查看消息</li>
+    <li><strong>@ 能力 📣</strong>：能看懂消息里的 @（显示为 <code>[@昵称(QQ)]</code>），回复时写 <code>[@QQ号]</code> / <code>[@全体成员]</code> 即可发出真正的 at</li>
+    <li><strong>群环境感知 🏠</strong>：群聊中自动注入当前群名与群号（群名缓存 10 分钟），知道自己在哪个群说话</li>
+    <li><strong>文件收发 📁</strong>：私聊可直接收发文件；群文件上传后自动保存；AI 可用 <code>send_file</code> 工具把文件发到当前会话（高危工具，需审批）</li>
+  </ul>
+
   <h2>安全与治理</h2>
   <ul>
     <li><strong>权限分级</strong>：主人 / 管理员 / 普通用户</li>
-    <li><strong>人工审批</strong>：高危操作（跑命令、调 opencode）需审批或进白名单</li>
+    <li><strong>人工审批</strong>：高危操作（跑命令、调 opencode、发文件）需审批或进白名单</li>
+    <li><strong>入群申请管理</strong>：bot 是群管理时，入群申请自动发卡到群里，群主/管理员/主人 <code>/同意 N</code> <code>/拒绝 N</code> 审批，详见 <a href="/Canmao-site/docs/capabilities/groupreq">入群申请管理</a></li>
     <li><strong>长消息合并转发</strong>：超过 200 字自动用合并转发，不霸屏</li>
-    <li><strong>文件管理</strong>：自动保存收到的图片文件，可检索上传</li>
+    <li><strong>文件管理</strong>：自动保存收到的图片文件（含群文件），可检索上传</li>
   </ul>
 
   <h2>更多</h2>
