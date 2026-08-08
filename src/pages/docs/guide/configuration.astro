@@ -37,7 +37,9 @@ import DocsLayout from '../../../layouts/DocsLayout.astro';
     <tr><td><code>max_tokens / temperature / timeout</code></td><td>LLM 生成参数</td></tr>
     <tr><td><code>session_mode</code></td><td>merged / separate</td></tr>
     <tr><td><code>mention_only</code></td><td>群内仅 @bot 响应</td></tr>
-    <tr><td><code>context_window</code></td><td>模型上下文（压缩阈值=40%）</td></tr>
+    <tr><td><code>max_history</code></td><td>每会话保留的历史消息数（200）</td></tr>
+    <tr><td><code>context_window</code></td><td>模型上下文（压缩阈值=95%）</td></tr>
+    <tr><td><code>compact_token</code></td><td>显式压缩阈值，优先级高于 context_window，0=自动</td></tr>
     <tr><td><code>max_iterations</code></td><td>工具调用最大轮数（200）</td></tr>
     <tr><td><code>tool_result_max</code></td><td>工具结果最大字符（3000）</td></tr>
   </table>
