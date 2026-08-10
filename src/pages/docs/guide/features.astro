@@ -9,7 +9,7 @@ import DocsLayout from '../../../layouts/DocsLayout.astro';
   <ul>
     <li><strong>多模型多提供商</strong>：OpenAI 兼容接口，运行期用 <code>/provider</code> 动态增删切换</li>
     <li><strong>工具调用</strong>：自动循环调用工具完成任务，最多 200 轮</li>
-    <li><strong>上下文管理</strong>：自动压缩长会话，控制 token 消耗</li>
+    <li><strong>上下文管理</strong>：自动压缩长会话，控制 token 消耗；历史消息带 <code>[MM-dd HH:mm]</code> 时间戳前缀（仅上下文，存储不变）</li>
     <li><strong>群会话模式</strong>：<code>merged</code> 全群合并 / <code>separate</code> 按用户独立</li>
   </ul>
 
@@ -39,7 +39,8 @@ import DocsLayout from '../../../layouts/DocsLayout.astro';
   <ul>
     <li><strong>引用消息 💬</strong>：回复（引用）的消息会以"引用消息"形式注入上下文，AI 能看到引用内容（含图片识图转述），也可用 <code>view_message</code> 工具按消息 ID 查看消息</li>
     <li><strong>@ 能力 📣</strong>：能看懂消息里的 @（显示为 <code>[@昵称(QQ)]</code>），回复时写 <code>[@QQ号]</code> / <code>[@全体成员]</code> 即可发出真正的 at</li>
-    <li><strong>群环境感知 🏠</strong>：群聊中自动注入当前群名与群号（群名缓存 10 分钟），知道自己在哪个群说话</li>
+    <li><strong>群环境感知 🏠</strong>：群聊中自动注入当前群名与群号、当前时间，以及群 meta 信息——自己的 QQ、群身份（群主/管理员/成员）、群昵称、头衔，和群主/管理员名单（meta 缓存 10 分钟，低调注入为一条消息），知道自己在哪个群、以什么身份说话</li>
+    <li><strong>成员信息查询 👤</strong>：<code>get_member_info</code> 工具可按需查询任意成员的昵称/群名片/身份/头衔（默认查当前群，低风险工具）</li>
     <li><strong>文件收发 📁</strong>：私聊可直接收发文件；群文件上传后自动保存；AI 可用 <code>send_file</code> 工具把文件发到当前会话（高危工具，需审批）</li>
   </ul>
 
