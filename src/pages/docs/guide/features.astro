@@ -36,6 +36,7 @@ import DocsLayout from '../../../layouts/DocsLayout.astro';
   </ul>
 
   <h2>群聊交互</h2>
+  <p>以下行为默认开启，均可在 <code>features</code> 配置节逐项关闭（见 <a href="/Canmao-site/docs/guide/configuration">配置参考</a>）。</p>
   <ul>
     <li><strong>引用消息 💬</strong>：回复（引用）的消息会以"引用消息"形式注入上下文，AI 能看到引用内容（含图片识图转述），也可用 <code>view_message</code> 工具按消息 ID 查看消息</li>
     <li><strong>@ 能力 📣</strong>：能看懂消息里的 @（显示为 <code>[@昵称(QQ)]</code>），回复时写 <code>[@QQ号]</code> / <code>[@全体成员]</code> 即可发出真正的 at</li>

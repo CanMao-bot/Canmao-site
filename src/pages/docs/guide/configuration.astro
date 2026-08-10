@@ -62,5 +62,21 @@ import DocsLayout from '../../../layouts/DocsLayout.astro';
     <tr><td><code>group_request</code></td><td>入群申请管理；<code>enabled</code> 开启后 bot 是群管理时把申请发卡到群内审批，详见 <a href="/Canmao-site/docs/capabilities/groupreq">入群申请管理</a></td></tr>
   </table>
 
+  <h2>features</h2>
+  <p>细粒度功能开关，逐项控制群聊交互行为。<strong>省略某项或整个配置节时该项默认开启</strong>，填 <code>false</code> 才关闭。</p>
+  <table>
+    <tr><th>字段</th><th>说明</th></tr>
+    <tr><td><code>quote</code></td><td>引用消息注入上下文 + <code>view_message</code> 工具</td></tr>
+    <tr><td><code>at_parse</code></td><td>收到的 @ 解析为 <code>[@昵称(QQ)]</code> 给 AI 看</td></tr>
+    <tr><td><code>at_send</code></td><td>回复中的 <code>[@QQ号]</code> 转为真实 at；关闭后发纯文本</td></tr>
+    <tr><td><code>file_fallback</code></td><td>私聊文件/图片段无 url 时兜底接收</td></tr>
+    <tr><td><code>group_file_save</code></td><td>群文件上传 notice 时自动保存</td></tr>
+    <tr><td><code>file_recv_hint</code></td><td>收到文件时向 AI 注入「收到文件」提示</td></tr>
+    <tr><td><code>silent_deny</code></td><td>群内无权限命令静默不回复；关闭后回复"无权限"/"仅主人可..."</td></tr>
+    <tr><td><code>env_inject</code></td><td>群上下文注入「当前环境」（群名/群号/时间等）</td></tr>
+    <tr><td><code>group_meta</code></td><td>注入群 meta 信息（身份/头衔/管理名单）+ <code>get_member_info</code> 工具</td></tr>
+    <tr><td><code>msg_timestamp</code></td><td>历史消息带 <code>[MM-dd HH:mm]</code> 时间戳前缀</td></tr>
+  </table>
+
   <blockquote>⚠️ 注意：opencode 在 systemd 环境通常无 nvm PATH，请给 <code>acp.binary</code> 填完整绝对路径，并在服务里注入 node PATH。</blockquote>
 </DocsLayout>
